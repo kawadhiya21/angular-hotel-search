@@ -1,0 +1,49 @@
+<html ng-app="search">
+	<head>
+		<title>Hotel Search</title>
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+			body{
+				font-family: 'Source Sans Pro', sans-serif;
+			}
+			li{
+				width: 100%;
+				display: inline-block;
+				margin: 20px;
+				padding: 10px;
+				border: 1px solid;
+				border-radius: 2px;
+			}
+			li img{
+				float: left;
+				margin-right: 15px
+			}
+			li p{
+				float: left;
+			}
+
+		</style>
+	</head>
+	<body ng-controller="SearchController">
+		<center>
+			<h1>Hotel Search</h1>
+			<input type="text" ng-model="hotelsearch">
+			<select ng-model="Slocation" ng-options="loc.locate for loc in locations">
+
+			</select>
+				</br>
+			<a href="#about"> About </a><a ng-click="tech()" href="#"> Technology </a>
+		</center>
+		
+		<ul>
+			<li ng-repeat="hotel in hotels | searchFor:hotelsearch:Slocation">
+				<a href="{{hotel.url}}"><img ng-src="{{hotel.image}}" /></a>
+				<h3>{{hotel.title}}</h3>
+		</ul>
+		<div ng-view></div>
+		<script type="text/javascript" src="angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+		<script type="text/javascript" src="controller.js"></script>
+	</body>
+</html>
